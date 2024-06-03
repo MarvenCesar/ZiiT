@@ -1,0 +1,716 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		175411E04A68133784DA57C9 /* Pods_ZiiTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3B5442761DECF4E1FBE814 /* Pods_ZiiTTests.framework */; };
+		31ED198176DEBBB82E4B6B6A /* Pods_ZiiT_ZiiTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72138065760D9B11F98C5E69 /* Pods_ZiiT_ZiiTUITests.framework */; };
+		6EE275752C0E53BE0006F14C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275742C0E53BE0006F14C /* AppDelegate.swift */; };
+		6EE275772C0E53BE0006F14C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275762C0E53BE0006F14C /* SceneDelegate.swift */; };
+		6EE275792C0E53BE0006F14C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275782C0E53BE0006F14C /* ViewController.swift */; };
+		6EE2757E2C0E53BF0006F14C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EE2757D2C0E53BF0006F14C /* Assets.xcassets */; };
+		6EE275812C0E53BF0006F14C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6EE275802C0E53BF0006F14C /* Base */; };
+		6EE2758C2C0E53BF0006F14C /* ZiiTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE2758B2C0E53BF0006F14C /* ZiiTTests.swift */; };
+		6EE275962C0E53BF0006F14C /* ZiiTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275952C0E53BF0006F14C /* ZiiTUITests.swift */; };
+		6EE275982C0E53BF0006F14C /* ZiiTUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275972C0E53BF0006F14C /* ZiiTUITestsLaunchTests.swift */; };
+		81985D0ED167F59AD1D87FB1 /* Pods_ZiiT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4883BCC007073FB111D1EF3 /* Pods_ZiiT.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6EE275882C0E53BF0006F14C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE275692C0E53BE0006F14C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EE275702C0E53BE0006F14C;
+			remoteInfo = ZiiT;
+		};
+		6EE275922C0E53BF0006F14C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE275692C0E53BE0006F14C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EE275702C0E53BE0006F14C;
+			remoteInfo = ZiiT;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1396C39D6F82E0DA7A79A352 /* Pods-ZiiT-ZiiTUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZiiT-ZiiTUITests.release.xcconfig"; path = "Target Support Files/Pods-ZiiT-ZiiTUITests/Pods-ZiiT-ZiiTUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6EE275712C0E53BE0006F14C /* ZiiT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZiiT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EE275742C0E53BE0006F14C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6EE275762C0E53BE0006F14C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6EE275782C0E53BE0006F14C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6EE2757D2C0E53BF0006F14C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6EE275802C0E53BF0006F14C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6EE275822C0E53BF0006F14C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EE275872C0E53BF0006F14C /* ZiiTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZiiTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EE2758B2C0E53BF0006F14C /* ZiiTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZiiTTests.swift; sourceTree = "<group>"; };
+		6EE275912C0E53BF0006F14C /* ZiiTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZiiTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EE275952C0E53BF0006F14C /* ZiiTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZiiTUITests.swift; sourceTree = "<group>"; };
+		6EE275972C0E53BF0006F14C /* ZiiTUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZiiTUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		72138065760D9B11F98C5E69 /* Pods_ZiiT_ZiiTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZiiT_ZiiTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77C8AC2921642CE343E5EEEF /* Pods-ZiiTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZiiTTests.release.xcconfig"; path = "Target Support Files/Pods-ZiiTTests/Pods-ZiiTTests.release.xcconfig"; sourceTree = "<group>"; };
+		7D3B5442761DECF4E1FBE814 /* Pods_ZiiTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZiiTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2431B4064E871CE596F2DD8 /* Pods-ZiiT-ZiiTUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZiiT-ZiiTUITests.debug.xcconfig"; path = "Target Support Files/Pods-ZiiT-ZiiTUITests/Pods-ZiiT-ZiiTUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A4883BCC007073FB111D1EF3 /* Pods_ZiiT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZiiT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2FB377B2EE3445F93FD7B6E /* Pods-ZiiTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZiiTTests.debug.xcconfig"; path = "Target Support Files/Pods-ZiiTTests/Pods-ZiiTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D3E827AEDEBA2378457D983F /* Pods-ZiiT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZiiT.debug.xcconfig"; path = "Target Support Files/Pods-ZiiT/Pods-ZiiT.debug.xcconfig"; sourceTree = "<group>"; };
+		EEE20F659D0BFC68C1075179 /* Pods-ZiiT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZiiT.release.xcconfig"; path = "Target Support Files/Pods-ZiiT/Pods-ZiiT.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6EE2756E2C0E53BE0006F14C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81985D0ED167F59AD1D87FB1 /* Pods_ZiiT.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EE275842C0E53BF0006F14C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				175411E04A68133784DA57C9 /* Pods_ZiiTTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EE2758E2C0E53BF0006F14C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31ED198176DEBBB82E4B6B6A /* Pods_ZiiT_ZiiTUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6CEA3110DAA314B503D57116 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A4883BCC007073FB111D1EF3 /* Pods_ZiiT.framework */,
+				72138065760D9B11F98C5E69 /* Pods_ZiiT_ZiiTUITests.framework */,
+				7D3B5442761DECF4E1FBE814 /* Pods_ZiiTTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6EE275682C0E53BE0006F14C = {
+			isa = PBXGroup;
+			children = (
+				6EE275732C0E53BE0006F14C /* ZiiT */,
+				6EE2758A2C0E53BF0006F14C /* ZiiTTests */,
+				6EE275942C0E53BF0006F14C /* ZiiTUITests */,
+				6EE275722C0E53BE0006F14C /* Products */,
+				7D2527B02110C29D74412869 /* Pods */,
+				6CEA3110DAA314B503D57116 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6EE275722C0E53BE0006F14C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6EE275712C0E53BE0006F14C /* ZiiT.app */,
+				6EE275872C0E53BF0006F14C /* ZiiTTests.xctest */,
+				6EE275912C0E53BF0006F14C /* ZiiTUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6EE275732C0E53BE0006F14C /* ZiiT */ = {
+			isa = PBXGroup;
+			children = (
+				6EE275742C0E53BE0006F14C /* AppDelegate.swift */,
+				6EE275762C0E53BE0006F14C /* SceneDelegate.swift */,
+				6EE275782C0E53BE0006F14C /* ViewController.swift */,
+				6EE2757D2C0E53BF0006F14C /* Assets.xcassets */,
+				6EE2757F2C0E53BF0006F14C /* LaunchScreen.storyboard */,
+				6EE275822C0E53BF0006F14C /* Info.plist */,
+			);
+			path = ZiiT;
+			sourceTree = "<group>";
+		};
+		6EE2758A2C0E53BF0006F14C /* ZiiTTests */ = {
+			isa = PBXGroup;
+			children = (
+				6EE2758B2C0E53BF0006F14C /* ZiiTTests.swift */,
+			);
+			path = ZiiTTests;
+			sourceTree = "<group>";
+		};
+		6EE275942C0E53BF0006F14C /* ZiiTUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6EE275952C0E53BF0006F14C /* ZiiTUITests.swift */,
+				6EE275972C0E53BF0006F14C /* ZiiTUITestsLaunchTests.swift */,
+			);
+			path = ZiiTUITests;
+			sourceTree = "<group>";
+		};
+		7D2527B02110C29D74412869 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D3E827AEDEBA2378457D983F /* Pods-ZiiT.debug.xcconfig */,
+				EEE20F659D0BFC68C1075179 /* Pods-ZiiT.release.xcconfig */,
+				A2431B4064E871CE596F2DD8 /* Pods-ZiiT-ZiiTUITests.debug.xcconfig */,
+				1396C39D6F82E0DA7A79A352 /* Pods-ZiiT-ZiiTUITests.release.xcconfig */,
+				D2FB377B2EE3445F93FD7B6E /* Pods-ZiiTTests.debug.xcconfig */,
+				77C8AC2921642CE343E5EEEF /* Pods-ZiiTTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6EE275702C0E53BE0006F14C /* ZiiT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EE2759B2C0E53BF0006F14C /* Build configuration list for PBXNativeTarget "ZiiT" */;
+			buildPhases = (
+				D344C118080BCD132552CDCF /* [CP] Check Pods Manifest.lock */,
+				6EE2756D2C0E53BE0006F14C /* Sources */,
+				6EE2756E2C0E53BE0006F14C /* Frameworks */,
+				6EE2756F2C0E53BE0006F14C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZiiT;
+			productName = ZiiT;
+			productReference = 6EE275712C0E53BE0006F14C /* ZiiT.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6EE275862C0E53BF0006F14C /* ZiiTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EE2759E2C0E53BF0006F14C /* Build configuration list for PBXNativeTarget "ZiiTTests" */;
+			buildPhases = (
+				69A46F633B9DA2F808C2E0C6 /* [CP] Check Pods Manifest.lock */,
+				6EE275832C0E53BF0006F14C /* Sources */,
+				6EE275842C0E53BF0006F14C /* Frameworks */,
+				6EE275852C0E53BF0006F14C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6EE275892C0E53BF0006F14C /* PBXTargetDependency */,
+			);
+			name = ZiiTTests;
+			productName = ZiiTTests;
+			productReference = 6EE275872C0E53BF0006F14C /* ZiiTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6EE275902C0E53BF0006F14C /* ZiiTUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EE275A12C0E53BF0006F14C /* Build configuration list for PBXNativeTarget "ZiiTUITests" */;
+			buildPhases = (
+				2EB28A11673C436D7CAEC83C /* [CP] Check Pods Manifest.lock */,
+				6EE2758D2C0E53BF0006F14C /* Sources */,
+				6EE2758E2C0E53BF0006F14C /* Frameworks */,
+				6EE2758F2C0E53BF0006F14C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6EE275932C0E53BF0006F14C /* PBXTargetDependency */,
+			);
+			name = ZiiTUITests;
+			productName = ZiiTUITests;
+			productReference = 6EE275912C0E53BF0006F14C /* ZiiTUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6EE275692C0E53BE0006F14C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					6EE275702C0E53BE0006F14C = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					6EE275862C0E53BF0006F14C = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 6EE275702C0E53BE0006F14C;
+					};
+					6EE275902C0E53BF0006F14C = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 6EE275702C0E53BE0006F14C;
+					};
+				};
+			};
+			buildConfigurationList = 6EE2756C2C0E53BE0006F14C /* Build configuration list for PBXProject "ZiiT" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6EE275682C0E53BE0006F14C;
+			productRefGroup = 6EE275722C0E53BE0006F14C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6EE275702C0E53BE0006F14C /* ZiiT */,
+				6EE275862C0E53BF0006F14C /* ZiiTTests */,
+				6EE275902C0E53BF0006F14C /* ZiiTUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6EE2756F2C0E53BE0006F14C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EE2757E2C0E53BF0006F14C /* Assets.xcassets in Resources */,
+				6EE275812C0E53BF0006F14C /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EE275852C0E53BF0006F14C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EE2758F2C0E53BF0006F14C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2EB28A11673C436D7CAEC83C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZiiT-ZiiTUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69A46F633B9DA2F808C2E0C6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZiiTTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D344C118080BCD132552CDCF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZiiT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6EE2756D2C0E53BE0006F14C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EE275792C0E53BE0006F14C /* ViewController.swift in Sources */,
+				6EE275752C0E53BE0006F14C /* AppDelegate.swift in Sources */,
+				6EE275772C0E53BE0006F14C /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EE275832C0E53BF0006F14C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EE2758C2C0E53BF0006F14C /* ZiiTTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EE2758D2C0E53BF0006F14C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EE275982C0E53BF0006F14C /* ZiiTUITestsLaunchTests.swift in Sources */,
+				6EE275962C0E53BF0006F14C /* ZiiTUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6EE275892C0E53BF0006F14C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EE275702C0E53BE0006F14C /* ZiiT */;
+			targetProxy = 6EE275882C0E53BF0006F14C /* PBXContainerItemProxy */;
+		};
+		6EE275932C0E53BF0006F14C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EE275702C0E53BE0006F14C /* ZiiT */;
+			targetProxy = 6EE275922C0E53BF0006F14C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6EE2757F2C0E53BF0006F14C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6EE275802C0E53BF0006F14C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6EE275992C0E53BF0006F14C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6EE2759A2C0E53BF0006F14C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6EE2759C2C0E53BF0006F14C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3E827AEDEBA2378457D983F /* Pods-ZiiT.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F8W4YL8983;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZiiT/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarvenCesar.ZiiT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6EE2759D2C0E53BF0006F14C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEE20F659D0BFC68C1075179 /* Pods-ZiiT.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F8W4YL8983;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZiiT/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarvenCesar.ZiiT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6EE2759F2C0E53BF0006F14C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2FB377B2EE3445F93FD7B6E /* Pods-ZiiTTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F8W4YL8983;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarvenCesar.ZiiTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZiiT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ZiiT";
+			};
+			name = Debug;
+		};
+		6EE275A02C0E53BF0006F14C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77C8AC2921642CE343E5EEEF /* Pods-ZiiTTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F8W4YL8983;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarvenCesar.ZiiTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZiiT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ZiiT";
+			};
+			name = Release;
+		};
+		6EE275A22C0E53BF0006F14C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2431B4064E871CE596F2DD8 /* Pods-ZiiT-ZiiTUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F8W4YL8983;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarvenCesar.ZiiTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ZiiT;
+			};
+			name = Debug;
+		};
+		6EE275A32C0E53BF0006F14C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1396C39D6F82E0DA7A79A352 /* Pods-ZiiT-ZiiTUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F8W4YL8983;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MarvenCesar.ZiiTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ZiiT;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6EE2756C2C0E53BE0006F14C /* Build configuration list for PBXProject "ZiiT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EE275992C0E53BF0006F14C /* Debug */,
+				6EE2759A2C0E53BF0006F14C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6EE2759B2C0E53BF0006F14C /* Build configuration list for PBXNativeTarget "ZiiT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EE2759C2C0E53BF0006F14C /* Debug */,
+				6EE2759D2C0E53BF0006F14C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6EE2759E2C0E53BF0006F14C /* Build configuration list for PBXNativeTarget "ZiiTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EE2759F2C0E53BF0006F14C /* Debug */,
+				6EE275A02C0E53BF0006F14C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6EE275A12C0E53BF0006F14C /* Build configuration list for PBXNativeTarget "ZiiTUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EE275A22C0E53BF0006F14C /* Debug */,
+				6EE275A32C0E53BF0006F14C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6EE275692C0E53BE0006F14C /* Project object */;
+}
