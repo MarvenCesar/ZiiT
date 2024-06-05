@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		175411E04A68133784DA57C9 /* Pods_ZiiTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3B5442761DECF4E1FBE814 /* Pods_ZiiTTests.framework */; };
 		31ED198176DEBBB82E4B6B6A /* Pods_ZiiT_ZiiTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72138065760D9B11F98C5E69 /* Pods_ZiiT_ZiiTUITests.framework */; };
+		6E3163BA2C10AA6300A997CA /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3163B92C10AA6300A997CA /* ChatManager.swift */; };
+		6E3163BD2C10AC4B00A997CA /* StreamChat in Frameworks */ = {isa = PBXBuildFile; productRef = 6E3163BC2C10AC4B00A997CA /* StreamChat */; };
+		6E3163BF2C10AC4B00A997CA /* StreamChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6E3163BE2C10AC4B00A997CA /* StreamChatUI */; };
 		6EE275752C0E53BE0006F14C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275742C0E53BE0006F14C /* AppDelegate.swift */; };
 		6EE275772C0E53BE0006F14C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275762C0E53BE0006F14C /* SceneDelegate.swift */; };
 		6EE275792C0E53BE0006F14C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275782C0E53BE0006F14C /* ViewController.swift */; };
@@ -39,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		1396C39D6F82E0DA7A79A352 /* Pods-ZiiT-ZiiTUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZiiT-ZiiTUITests.release.xcconfig"; path = "Target Support Files/Pods-ZiiT-ZiiTUITests/Pods-ZiiT-ZiiTUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6E3163B92C10AA6300A997CA /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		6EE275712C0E53BE0006F14C /* ZiiT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZiiT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EE275742C0E53BE0006F14C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EE275762C0E53BE0006F14C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E3163BF2C10AC4B00A997CA /* StreamChatUI in Frameworks */,
+				6E3163BD2C10AC4B00A997CA /* StreamChat in Frameworks */,
 				81985D0ED167F59AD1D87FB1 /* Pods_ZiiT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +105,47 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6E3163B42C10A94400A997CA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6EE275782C0E53BE0006F14C /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6E3163B52C10A96300A997CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6E3163B62C10A97300A997CA /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				6E3163B92C10AA6300A997CA /* ChatManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		6E3163B72C10A98B00A997CA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6E3163B82C10A9AA00A997CA /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				6EE275742C0E53BE0006F14C /* AppDelegate.swift */,
+				6EE275762C0E53BE0006F14C /* SceneDelegate.swift */,
+				6EE2757D2C0E53BF0006F14C /* Assets.xcassets */,
+				6EE2757F2C0E53BF0006F14C /* LaunchScreen.storyboard */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		6EE275682C0E53BE0006F14C = {
 			isa = PBXGroup;
 			children = (
@@ -124,11 +171,11 @@
 		6EE275732C0E53BE0006F14C /* ZiiT */ = {
 			isa = PBXGroup;
 			children = (
-				6EE275742C0E53BE0006F14C /* AppDelegate.swift */,
-				6EE275762C0E53BE0006F14C /* SceneDelegate.swift */,
-				6EE275782C0E53BE0006F14C /* ViewController.swift */,
-				6EE2757D2C0E53BF0006F14C /* Assets.xcassets */,
-				6EE2757F2C0E53BF0006F14C /* LaunchScreen.storyboard */,
+				6E3163B82C10A9AA00A997CA /* Others */,
+				6E3163B72C10A98B00A997CA /* Models */,
+				6E3163B62C10A97300A997CA /* Managers */,
+				6E3163B52C10A96300A997CA /* Views */,
+				6E3163B42C10A94400A997CA /* Controllers */,
 				6EE275822C0E53BF0006F14C /* Info.plist */,
 			);
 			path = ZiiT;
@@ -181,6 +228,10 @@
 			dependencies = (
 			);
 			name = ZiiT;
+			packageProductDependencies = (
+				6E3163BC2C10AC4B00A997CA /* StreamChat */,
+				6E3163BE2C10AC4B00A997CA /* StreamChatUI */,
+			);
 			productName = ZiiT;
 			productReference = 6EE275712C0E53BE0006F14C /* ZiiT.app */;
 			productType = "com.apple.product-type.application";
@@ -255,6 +306,9 @@
 				Base,
 			);
 			mainGroup = 6EE275682C0E53BE0006F14C;
+			packageReferences = (
+				6E3163BB2C10AC4B00A997CA /* XCRemoteSwiftPackageReference "stream-chat-swift" */,
+			);
 			productRefGroup = 6EE275722C0E53BE0006F14C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -369,6 +423,7 @@
 				6EE275792C0E53BE0006F14C /* ViewController.swift in Sources */,
 				6EE275752C0E53BE0006F14C /* AppDelegate.swift in Sources */,
 				6EE275772C0E53BE0006F14C /* SceneDelegate.swift in Sources */,
+				6E3163BA2C10AA6300A997CA /* ChatManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +766,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6E3163BB2C10AC4B00A997CA /* XCRemoteSwiftPackageReference "stream-chat-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getstream/stream-chat-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.56.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E3163BC2C10AC4B00A997CA /* StreamChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E3163BB2C10AC4B00A997CA /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
+			productName = StreamChat;
+		};
+		6E3163BE2C10AC4B00A997CA /* StreamChatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E3163BB2C10AC4B00A997CA /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
+			productName = StreamChatUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6EE275692C0E53BE0006F14C /* Project object */;
 }
