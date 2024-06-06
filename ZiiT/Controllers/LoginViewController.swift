@@ -50,6 +50,10 @@ final class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
         usernameField.becomeFirstResponder()
+        
+        if ChatManager.shared.isSignedIn{
+            presentChatList(animated: false)
+        }
     }
 
     private func addConstraints() {
@@ -66,17 +70,26 @@ final class LoginViewController: UIViewController {
             
         ])
     }
-        @objc private func didTapContinue() {
-            usernameField.resignFirstResponder()
-            guard let text = usernameField.text, !text.isEmpty else {
+    @objc private func didTapContinue() {
+        usernameField.resignFirstResponder()
+        guard let text = usernameField.text, !text.isEmpty else {
+            return
+        }
+        ChatManager.shared.signIn(with: text ) { [weak self] success in
+            guard success else {
                 return
             }
-            ChatManager.shared.signIn(with: text ) { success in
-                guard success else {
-                    return
-                }
-                
+            print("Did Login")
+            DispatchQueue.main.async{
+                self?.presentChatList()
             }
         }
     }
+    func presentChatList(animated: Bool = true){
+                print("Should Show Chat List")
+        guard let vc = ChatManager.shared.createChannelList() else {return}
+        present(vc, animated:animated)
+            }
+        }
+    
 

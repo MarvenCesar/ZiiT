@@ -12,6 +12,8 @@
 		6E3163BA2C10AA6300A997CA /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3163B92C10AA6300A997CA /* ChatManager.swift */; };
 		6E3163BD2C10AC4B00A997CA /* StreamChat in Frameworks */ = {isa = PBXBuildFile; productRef = 6E3163BC2C10AC4B00A997CA /* StreamChat */; };
 		6E3163BF2C10AC4B00A997CA /* StreamChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6E3163BE2C10AC4B00A997CA /* StreamChatUI */; };
+		6E3163C12C11F0E800A997CA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3163C02C11F0E800A997CA /* SettingsViewController.swift */; };
+		6E3163C62C11F1AB00A997CA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3163C52C11F1AB00A997CA /* TabBarViewController.swift */; };
 		6EE275752C0E53BE0006F14C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275742C0E53BE0006F14C /* AppDelegate.swift */; };
 		6EE275772C0E53BE0006F14C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275762C0E53BE0006F14C /* SceneDelegate.swift */; };
 		6EE275792C0E53BE0006F14C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275782C0E53BE0006F14C /* LoginViewController.swift */; };
@@ -43,6 +45,8 @@
 /* Begin PBXFileReference section */
 		1396C39D6F82E0DA7A79A352 /* Pods-ZiiT-ZiiTUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZiiT-ZiiTUITests.release.xcconfig"; path = "Target Support Files/Pods-ZiiT-ZiiTUITests/Pods-ZiiT-ZiiTUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6E3163B92C10AA6300A997CA /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		6E3163C02C11F0E800A997CA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		6E3163C52C11F1AB00A997CA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		6EE275712C0E53BE0006F14C /* ZiiT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZiiT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EE275742C0E53BE0006F14C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EE275762C0E53BE0006F14C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				6EE275782C0E53BE0006F14C /* LoginViewController.swift */,
+				6E3163C02C11F0E800A997CA /* SettingsViewController.swift */,
+				6E3163C52C11F1AB00A997CA /* TabBarViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -423,6 +429,8 @@
 				6EE275792C0E53BE0006F14C /* LoginViewController.swift in Sources */,
 				6EE275752C0E53BE0006F14C /* AppDelegate.swift in Sources */,
 				6EE275772C0E53BE0006F14C /* SceneDelegate.swift in Sources */,
+				6E3163C12C11F0E800A997CA /* SettingsViewController.swift in Sources */,
+				6E3163C62C11F1AB00A997CA /* TabBarViewController.swift in Sources */,
 				6E3163BA2C10AA6300A997CA /* ChatManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

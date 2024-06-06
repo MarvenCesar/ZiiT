@@ -1,0 +1,32 @@
+//
+//  TabBarViewController.swift
+//  ZiiT
+//
+//  Created by Marven Cesar on 6/6/24.
+//
+
+import UIKit
+
+class TabBarViewController: UITabBarController {
+    
+    let chatList: UIViewController
+    
+    init(chatList: UIViewController) {
+        self.chatList = chatList
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder){
+        fatalError("init(coder:)has not been implemented")
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUpViewControllers()
+    }
+    private func setUpViewControllers() {
+        let settings = SettingsViewController()
+        let nav1 = UINavigationController(rootViewController: chatList)
+        let nav2 = UINavigationController(rootViewController: settings)
+        setViewControllers([nav1, nav2], animated: true)
+    }
+}
