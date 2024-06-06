@@ -55,7 +55,7 @@ final class ChatManager{
     var isSignedIn: Bool{
         return client.currentUserId != nil
     }
-   private var currentUser: String? {
+  var currentUser: String? {
         return client.currentUserId
     }
     // channelList + creation
