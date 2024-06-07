@@ -69,6 +69,24 @@ final class ChatManager{
         return vc
     }
     public func createNewChannel(name: String){
-        
+        guard let current = currentUser else{
+            return
+        }
+        let keys: [String] = tokens.keys.filter({$0 != current}).map {$0}
+       
+        do {
+            let result = try client.channelController(
+                createChannelWithId: .init(type: .messaging, id: name),
+                name: name,
+                members: Set(keys),
+                isCurrentUserMember: true
+                
+            )
+            result.synchronize()
+        }
+        catch{
+            print ("\(error)")
+            
+        }
     }
 }

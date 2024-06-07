@@ -64,7 +64,7 @@ final class SettingsViewController: UIViewController {
             button.leftAnchor.constraint(equalTo: view.leftAnchor),
             button.rightAnchor.constraint(equalTo: view.rightAnchor),
             button.heightAnchor.constraint(equalToConstant: 50),
-            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant:20)
+            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50)
             ])
         
     }
