@@ -113,6 +113,7 @@ final class ChatManager {
         
         task.resume()
     }
+
     
     func signOut() {
         do {
@@ -151,20 +152,20 @@ final class ChatManager {
             }
         }
     }
-    
     public func createNewChannel(name: String) {
         guard let current = currentUser else {
+            print("No current user")
             return
         }
         fetchUserIDsForNewChannel(excluding: current) { userIDs in
             do {
-                let result = try self.client.channelController(
+                let controller = try self.client.channelController(
                     createChannelWithId: .init(type: .messaging, id: name),
                     name: name,
                     members: Set(userIDs),
                     isCurrentUserMember: true
                 )
-                result.synchronize()
+                controller.synchronize()
                 print("New channel created successfully: \(name)")
             } catch {
                 print("Error creating new channel: \(error.localizedDescription)")

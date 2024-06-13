@@ -1,12 +1,6 @@
 import UIKit
 
-protocol SignUpViewControllerDelegate: AnyObject {
-    func signUpViewControllerDidCompleteSignUp(_ controller: SignUpViewController, email: String, password: String)
-}
-
 final class SignUpViewController: UIViewController {
-    weak var delegate: SignUpViewControllerDelegate?
-
     private let emailField: UITextField = {
         let field = UITextField()
         field.placeholder = "Email..."
@@ -116,18 +110,12 @@ final class SignUpViewController: UIViewController {
             print("User signed up successfully")
             
             DispatchQueue.main.async {
-                self?.delegate?.signUpViewControllerDidCompleteSignUp(self!, email: email, password: password)
                 self?.navigationController?.popViewController(animated: true)
+                if let loginVC = self?.navigationController?.topViewController as? LoginViewController {
+                    loginVC.attemptAutoLogin(email: email, password: password)
+                }
             }
         }
     }
 }
-
-
-
-
-
-
-
-
 

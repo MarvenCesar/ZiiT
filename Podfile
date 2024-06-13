@@ -7,6 +7,15 @@ target 'ZiiT' do
 
   # Pods for ZiiT
 
+  # Firebase dependencies
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'FirebaseFunctions'
+
+  # StreamChat dependencies
+  pod 'StreamChat'
+  pod 'StreamChatUI'
+
   target 'ZiiTTests' do
     inherit! :search_paths
     # Pods for testing

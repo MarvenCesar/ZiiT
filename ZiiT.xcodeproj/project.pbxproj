@@ -10,10 +10,10 @@
 		175411E04A68133784DA57C9 /* Pods_ZiiTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3B5442761DECF4E1FBE814 /* Pods_ZiiTTests.framework */; };
 		31ED198176DEBBB82E4B6B6A /* Pods_ZiiT_ZiiTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72138065760D9B11F98C5E69 /* Pods_ZiiT_ZiiTUITests.framework */; };
 		6E3163BA2C10AA6300A997CA /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3163B92C10AA6300A997CA /* ChatManager.swift */; };
-		6E3163BD2C10AC4B00A997CA /* StreamChat in Frameworks */ = {isa = PBXBuildFile; productRef = 6E3163BC2C10AC4B00A997CA /* StreamChat */; };
-		6E3163BF2C10AC4B00A997CA /* StreamChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6E3163BE2C10AC4B00A997CA /* StreamChatUI */; };
 		6E3163C12C11F0E800A997CA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3163C02C11F0E800A997CA /* SettingsViewController.swift */; };
 		6E3163C62C11F1AB00A997CA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3163C52C11F1AB00A997CA /* TabBarViewController.swift */; };
+		6E36DCFA2C1BAC760063305E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E36DCF92C1BAC760063305E /* SignUpViewController.swift */; };
+		6E36DCFC2C1BACB70063305E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E36DCFB2C1BACB70063305E /* GoogleService-Info.plist */; };
 		6EE275752C0E53BE0006F14C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275742C0E53BE0006F14C /* AppDelegate.swift */; };
 		6EE275772C0E53BE0006F14C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275762C0E53BE0006F14C /* SceneDelegate.swift */; };
 		6EE275792C0E53BE0006F14C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE275782C0E53BE0006F14C /* LoginViewController.swift */; };
@@ -47,6 +47,8 @@
 		6E3163B92C10AA6300A997CA /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		6E3163C02C11F0E800A997CA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6E3163C52C11F1AB00A997CA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		6E36DCF92C1BAC760063305E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6E36DCFB2C1BACB70063305E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EE275712C0E53BE0006F14C /* ZiiT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZiiT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EE275742C0E53BE0006F14C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EE275762C0E53BE0006F14C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,8 +76,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3163BF2C10AC4B00A997CA /* StreamChatUI in Frameworks */,
-				6E3163BD2C10AC4B00A997CA /* StreamChat in Frameworks */,
 				81985D0ED167F59AD1D87FB1 /* Pods_ZiiT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +115,7 @@
 				6EE275782C0E53BE0006F14C /* LoginViewController.swift */,
 				6E3163C02C11F0E800A997CA /* SettingsViewController.swift */,
 				6E3163C52C11F1AB00A997CA /* TabBarViewController.swift */,
+				6E36DCF92C1BAC760063305E /* SignUpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,6 +184,7 @@
 				6E3163B52C10A96300A997CA /* Views */,
 				6E3163B42C10A94400A997CA /* Controllers */,
 				6EE275822C0E53BF0006F14C /* Info.plist */,
+				6E36DCFB2C1BACB70063305E /* GoogleService-Info.plist */,
 			);
 			path = ZiiT;
 			sourceTree = "<group>";
@@ -228,6 +230,7 @@
 				6EE2756D2C0E53BE0006F14C /* Sources */,
 				6EE2756E2C0E53BE0006F14C /* Frameworks */,
 				6EE2756F2C0E53BE0006F14C /* Resources */,
+				174CF1EC111C6E317E2F22FC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,8 +238,6 @@
 			);
 			name = ZiiT;
 			packageProductDependencies = (
-				6E3163BC2C10AC4B00A997CA /* StreamChat */,
-				6E3163BE2C10AC4B00A997CA /* StreamChatUI */,
 			);
 			productName = ZiiT;
 			productReference = 6EE275712C0E53BE0006F14C /* ZiiT.app */;
@@ -269,6 +270,7 @@
 				6EE2758D2C0E53BF0006F14C /* Sources */,
 				6EE2758E2C0E53BF0006F14C /* Frameworks */,
 				6EE2758F2C0E53BF0006F14C /* Resources */,
+				EF88D860368C2EBA5FBF6574 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -333,6 +335,7 @@
 			files = (
 				6EE2757E2C0E53BF0006F14C /* Assets.xcassets in Resources */,
 				6EE275812C0E53BF0006F14C /* Base in Resources */,
+				6E36DCFC2C1BACB70063305E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +356,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		174CF1EC111C6E317E2F22FC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZiiT/Pods-ZiiT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZiiT/Pods-ZiiT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZiiT/Pods-ZiiT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2EB28A11673C436D7CAEC83C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -419,6 +439,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EF88D860368C2EBA5FBF6574 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZiiT-ZiiTUITests/Pods-ZiiT-ZiiTUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZiiT-ZiiTUITests/Pods-ZiiT-ZiiTUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZiiT-ZiiTUITests/Pods-ZiiT-ZiiTUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -427,6 +464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EE275792C0E53BE0006F14C /* LoginViewController.swift in Sources */,
+				6E36DCFA2C1BAC760063305E /* SignUpViewController.swift in Sources */,
 				6EE275752C0E53BE0006F14C /* AppDelegate.swift in Sources */,
 				6EE275772C0E53BE0006F14C /* SceneDelegate.swift in Sources */,
 				6E3163C12C11F0E800A997CA /* SettingsViewController.swift in Sources */,
@@ -516,7 +554,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -579,7 +617,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -785,19 +823,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		6E3163BC2C10AC4B00A997CA /* StreamChat */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6E3163BB2C10AC4B00A997CA /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
-			productName = StreamChat;
-		};
-		6E3163BE2C10AC4B00A997CA /* StreamChatUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6E3163BB2C10AC4B00A997CA /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
-			productName = StreamChatUI;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6EE275692C0E53BE0006F14C /* Project object */;
 }

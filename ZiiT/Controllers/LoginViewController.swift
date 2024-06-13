@@ -1,6 +1,6 @@
 import UIKit
 
-final class LoginViewController: UIViewController, SignUpViewControllerDelegate {
+final class LoginViewController: UIViewController {
     private let emailField: UITextField = {
         let field = UITextField()
         field.placeholder = "Email..."
@@ -122,7 +122,6 @@ final class LoginViewController: UIViewController, SignUpViewControllerDelegate 
     @objc private func didTapSignUp() {
         print("SignUp button tapped")
         let signUpVC = SignUpViewController()
-        signUpVC.delegate = self
         navigationController?.pushViewController(signUpVC, animated: true)
     }
     
@@ -179,12 +178,8 @@ final class LoginViewController: UIViewController, SignUpViewControllerDelegate 
             }
         }
     }
-    
-    // Delegate method
-    func signUpViewControllerDidCompleteSignUp(_ controller: SignUpViewController, email: String, password: String) {
-        attemptAutoLogin(email: email, password: password)
-    }
 }
+
 
 
 
