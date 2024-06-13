@@ -1,23 +1,10 @@
-//
-//  ViewController.swift
-//  ZiiT
-//
-//  Created by Marven Cesar on 6/3/24.
-//
-
 import UIKit
 
-/*
- - Login Screen
- - Channel List, Dms Group Chat
- - message, create chat,channels
- - settings
- - test
- */
-final class LoginViewController: UIViewController {
-    private let usernameField: UITextField = {
+final class LoginViewController: UIViewController, SignUpViewControllerDelegate {
+    private let emailField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Username..."
+        field.placeholder = "Email..."
+        field.keyboardType = .emailAddress
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.leftViewMode = .always
@@ -27,13 +14,36 @@ final class LoginViewController: UIViewController {
         return field
     }()
     
-    // Login button
-    private let button: UIButton = {
+    private let passwordField: UITextField = {
+        let field = UITextField()
+        field.placeholder = "Password..."
+        field.isSecureTextEntry = true
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.leftViewMode = .always
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.backgroundColor = .secondarySystemBackground
+        return field
+    }()
+    
+    private let loginButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGray
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("CONTINUE", for: .normal)
+        button.setTitle("LOGIN", for: .normal)
+        button.layer.cornerRadius = 8
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
+    private let signUpButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemBlue
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle("SIGN UP", for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         return button
@@ -43,15 +53,18 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         title = "ZiiT"
         view.backgroundColor = .systemBackground
-        view.addSubview(usernameField)
-        view.addSubview(button)
+        view.addSubview(emailField)
+        view.addSubview(passwordField)
+        view.addSubview(loginButton)
+        view.addSubview(signUpButton)
         addConstraints()
-        button.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        usernameField.becomeFirstResponder()
+        emailField.becomeFirstResponder()
         
         if ChatManager.shared.isSignedIn {
             presentChatList(animated: false)
@@ -60,39 +73,65 @@ final class LoginViewController: UIViewController {
 
     private func addConstraints() {
         NSLayoutConstraint.activate([
-            usernameField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            usernameField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
-            usernameField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
-            usernameField.heightAnchor.constraint(equalToConstant: 50),
+            emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            emailField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
+            emailField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
+            emailField.heightAnchor.constraint(equalToConstant: 50),
             
-            button.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 20),
-            button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
-            button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
-            button.heightAnchor.constraint(equalToConstant: 50)
+            passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 20),
+            passwordField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50),
+            passwordField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50),
+            passwordField.heightAnchor.constraint(equalToConstant: 50),
+            
+            loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 20),
+            loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
+            loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
+            loginButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            signUpButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
+            signUpButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
+            signUpButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
+            signUpButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
-    @objc private func didTapContinue() {
-        usernameField.resignFirstResponder()
-        guard let text = usernameField.text, !text.isEmpty else {
+    @objc private func didTapLogin() {
+        print("Login button tapped")
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        guard let email = emailField.text, !email.isEmpty,
+              let password = passwordField.text, !password.isEmpty else {
+            print("Missing field data")
             return
         }
         
-        ChatManager.shared.signIn(with: text) { [weak self] success in
+        print("Starting login process for \(email)")
+        
+        ChatManager.shared.signIn(email: email, password: password) { [weak self] success in
             guard success else {
-                // Handle the error here, maybe show an alert to the user
+                print("Login failed")
                 return
             }
-            print("Did Login")
+            print("User logged in successfully")
             DispatchQueue.main.async {
                 self?.presentChatList()
             }
         }
     }
     
-    private func presentChatList(animated: Bool = true) {
-        print("Should Show Chat List")
-        guard let vc = ChatManager.shared.createChannelList() else { return }
+    @objc private func didTapSignUp() {
+        print("SignUp button tapped")
+        let signUpVC = SignUpViewController()
+        signUpVC.delegate = self
+        navigationController?.pushViewController(signUpVC, animated: true)
+    }
+    
+    func presentChatList(animated: Bool = true) {
+        print("Should show chat list")
+        guard let vc = ChatManager.shared.createChannelList() else {
+            print("Could not create channel list")
+            return
+        }
         
         vc.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose,
                                                                target: self,
@@ -103,6 +142,7 @@ final class LoginViewController: UIViewController {
         // Ensure the view is in the window hierarchy
         DispatchQueue.main.async {
             if self.view.window != nil {
+                print("Presenting TabBarViewController")
                 self.present(tabVC, animated: animated)
             } else {
                 print("LoginViewController's view is not in the window hierarchy.")
@@ -125,6 +165,29 @@ final class LoginViewController: UIViewController {
         
         presentedViewController?.present(alert, animated: true)
     }
+    
+    func attemptAutoLogin(email: String, password: String) {
+        print("Attempting auto-login for \(email)")
+        ChatManager.shared.signIn(email: email, password: password) { [weak self] success in
+            guard success else {
+                print("Auto-login failed")
+                return
+            }
+            print("Auto-login successful")
+            DispatchQueue.main.async {
+                self?.presentChatList()
+            }
+        }
+    }
+    
+    // Delegate method
+    func signUpViewControllerDidCompleteSignUp(_ controller: SignUpViewController, email: String, password: String) {
+        attemptAutoLogin(email: email, password: password)
+    }
 }
+
+
+
+
 
 
