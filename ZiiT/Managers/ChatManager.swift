@@ -1,3 +1,5 @@
+// ChatManager.swift
+
 import StreamChat
 import StreamChatUI
 import Foundation
@@ -5,16 +7,21 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+//singleton object 
 final class ChatManager {
     static let shared = ChatManager()
     
-    private var client: ChatClient!
+    private init() {}
+    var client: ChatClient!
+    
     private let db = Firestore.firestore()
     
-    func setup() {
-        let client = ChatClient(config: .init(apiKey: .init("dtb2zae562wu")))
-        self.client = client
+   
+   func setup(client: ChatClient) {
+      self.client = client
     }
+   
+    
     
     func signUp(email: String, password: String, username: String, completion: @escaping (Bool) -> Void) {
         print("Attempting to sign up user with email: \(email)")
@@ -63,7 +70,12 @@ final class ChatManager {
     private func connectStreamChat(user: User, completion: @escaping (Bool) -> Void) {
         print("Attempting to connect Stream Chat for user: \(user.uid)")
         
-        let url = URL(string: "https://us-central1-ziit-a9623.cloudfunctions.net/generateStreamToken")!
+        guard let url = URL(string: "https://us-central1-ziit-a9623.cloudfunctions.net/generateStreamToken") else {
+            print("Invalid URL for token generation")
+            completion(false)
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -84,11 +96,9 @@ final class ChatManager {
                 return
             }
             
-            let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            let token = json?["token"] as? String ?? ""
-            
-            if token.isEmpty {
-                print("Received empty token")
+            guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                  let token = json["token"] as? String, !token.isEmpty else {
+                print("Invalid or empty token received")
                 completion(false)
                 return
             }
@@ -113,7 +123,6 @@ final class ChatManager {
         
         task.resume()
     }
-
     
     func signOut() {
         do {
@@ -134,51 +143,87 @@ final class ChatManager {
         return Auth.auth().currentUser?.uid
     }
     
-    private func fetchUserIDsForNewChannel(excluding currentUserID: String, completion: @escaping ([String]) -> Void) {
+    func fetchUsers(completion: @escaping ([String: String]) -> Void) {
         db.collection("users").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error.localizedDescription)")
-                completion([])
+                completion([:])
             } else {
-                var userIDs: [String] = []
+                var users = [String: String]()
                 for document in querySnapshot!.documents {
                     let userID = document.documentID
-                    if userID != currentUserID {
-                        userIDs.append(userID)
-                    }
+                    let username = document.data()["username"] as? String ?? "Unknown"
+                    users[userID] = username
                 }
-                print("Fetched user IDs for new channel: \(userIDs)")
-                completion(userIDs)
+                completion(users)
             }
         }
     }
-    public func createNewChannel(name: String) {
-        guard let current = currentUser else {
-            print("No current user")
+    
+    func fetchCurrentUsername(completion: @escaping (String?) -> Void) {
+        guard let userId = currentUser else {
+            completion(nil)
             return
         }
-        fetchUserIDsForNewChannel(excluding: current) { userIDs in
-            do {
-                let controller = try self.client.channelController(
-                    createChannelWithId: .init(type: .messaging, id: name),
-                    name: name,
-                    members: Set(userIDs),
-                    isCurrentUserMember: true
-                )
-                controller.synchronize()
-                print("New channel created successfully: \(name)")
-            } catch {
-                print("Error creating new channel: \(error.localizedDescription)")
+        
+        let userRef = db.collection("users").document(userId)
+        userRef.getDocument { document, error in
+            if let error = error {
+                print("Error fetching username: \(error.localizedDescription)")
+                completion(nil)
+                return
             }
+            
+            guard let document = document, document.exists,
+                  let data = document.data(),
+                  let username = data["username"] as? String else {
+                completion(nil)
+                return
+            }
+            
+            completion(username)
         }
     }
-
-    public func createChannelList() -> UIViewController? {
+    
+    public func createNewChannel(name: String, completion: @escaping (Bool) -> Void) {
+        guard let currentUser = client.currentUserId else {
+            print("No current user")
+            completion(false)
+            return
+        }
+        
+        do {
+         let controller = try client.channelController(
+            createChannelWithId: .init(type: .messaging, id: name),
+                name: name,
+                members: [],
+                isCurrentUserMember: true
+            )
+           controller.synchronize { error in
+                if let error = error {
+                    print("Error synchronizing channel: \(error.localizedDescription)")
+                    completion(false)
+                } else {
+                    print("Channel created successfully")
+                    completion(true)
+                }
+            }
+        } catch {
+            print("Error creating channel controller: \(error.localizedDescription)")
+            completion(false)
+            return
+        }
+        
+    
+    }
+    
+    func createChannelList() -> UIViewController? {
         guard let id = currentUser else { return nil }
-        let list = client.channelListController(query: .init(filter: .containMembers(userIds: [id])))
+        let query = ChannelListQuery(filter: .containMembers(userIds: [id]))
+        let controller = client.channelListController(query: query)
         let vc = ChatChannelListVC()
-        vc.content = list
-        list.synchronize()
+        vc.content = controller
+        controller.synchronize()
         return vc
     }
 }

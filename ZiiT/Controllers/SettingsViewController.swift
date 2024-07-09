@@ -4,13 +4,14 @@
 //
 //  Created by Marven Cesar on 6/6/24.
 //
+
 import UIKit
 
 final class SettingsViewController: UIViewController {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName:"person.circle")
+        imageView.image = UIImage(systemName: "person.circle")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -23,33 +24,52 @@ final class SettingsViewController: UIViewController {
         label.textColor = .label
         return label
     }()
+    
     private let button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.red, for: .normal)
         button.setTitle("Sign Out", for: .normal)
         return button
-        
     }()
     
-    override func viewDidLoad(){
+    override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
         view.backgroundColor = .systemBackground
+        setupUI()
+        setupActions()
+        fetchUsername()
+    }
+    
+    private func setupUI() {
         view.addSubview(imageView)
         view.addSubview(label)
         view.addSubview(button)
-        label.text = ChatManager.shared.currentUser
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        addConstraint()
+        //label.text = ChatManager.shared.currentUser
+        addConstraints()
     }
-    @objc private func didTapButton(){
+    
+    private func setupActions() {
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+    }
+    
+    private func fetchUsername() {
+         ChatManager.shared.fetchCurrentUsername { [weak self] username in
+             DispatchQueue.main.async {
+                 self?.label.text = username ?? "Unknown User"
+             }
+         }
+     }
+    
+    @objc private func didTapButton() {
         ChatManager.shared.signOut()
         let vc = UINavigationController(rootViewController: LoginViewController())
         vc.modalPresentationStyle = .fullScreen
-        present(vc,animated:true)
+        present(vc, animated: true)
     }
-    private func addConstraint() {
+    
+    private func addConstraints() {
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 100),
             imageView.heightAnchor.constraint(equalToConstant: 100),
@@ -59,13 +79,12 @@ final class SettingsViewController: UIViewController {
             label.leftAnchor.constraint(equalTo: view.leftAnchor),
             label.rightAnchor.constraint(equalTo: view.rightAnchor),
             label.heightAnchor.constraint(equalToConstant: 80),
-            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant:20),
+            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
             
             button.leftAnchor.constraint(equalTo: view.leftAnchor),
             button.rightAnchor.constraint(equalTo: view.rightAnchor),
             button.heightAnchor.constraint(equalToConstant: 50),
             button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50)
-            ])
-        
+        ])
     }
 }

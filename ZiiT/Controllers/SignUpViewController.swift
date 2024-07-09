@@ -54,11 +54,19 @@ final class SignUpViewController: UIViewController {
         super.viewDidLoad()
         title = "Sign Up"
         view.backgroundColor = .systemBackground
+        setupUI()
+        setupActions()
+    }
+    
+    private func setupUI() {
         view.addSubview(emailField)
         view.addSubview(passwordField)
         view.addSubview(usernameField)
         view.addSubview(signUpButton)
         addConstraints()
+    }
+    
+    private func setupActions() {
         signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
     }
     
@@ -96,6 +104,7 @@ final class SignUpViewController: UIViewController {
               let password = passwordField.text, !password.isEmpty,
               let username = usernameField.text, !username.isEmpty else {
             print("Missing field data")
+            showAlert(message: "Please fill in all fields.")
             return
         }
         
@@ -105,6 +114,7 @@ final class SignUpViewController: UIViewController {
             print("Sign-up completion handler called")
             guard success else {
                 print("Sign-up failed")
+                self?.showAlert(message: "Sign-up failed. Please try again.")
                 return
             }
             print("User signed up successfully")
@@ -117,5 +127,14 @@ final class SignUpViewController: UIViewController {
             }
         }
     }
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
+
 

@@ -1,6 +1,12 @@
+//loginViiewController
+
 import UIKit
 
-final class LoginViewController: UIViewController {
+
+final class LoginViewController: UIViewController, UITabBarControllerDelegate {
+    
+    
+    // uitextfield
     private let emailField: UITextField = {
         let field = UITextField()
         field.placeholder = "Email..."
@@ -49,9 +55,11 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
+    private var isViewVisible = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "ZiiT"
+        title = "Decentralized Messaging APP"
         view.backgroundColor = .systemBackground
         view.addSubview(emailField)
         view.addSubview(passwordField)
@@ -64,13 +72,19 @@ final class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        isViewVisible = true
         emailField.becomeFirstResponder()
         
         if ChatManager.shared.isSignedIn {
             presentChatList(animated: false)
         }
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isViewVisible = false
+    }
+    
     private func addConstraints() {
         NSLayoutConstraint.activate([
             emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
@@ -102,6 +116,7 @@ final class LoginViewController: UIViewController {
         guard let email = emailField.text, !email.isEmpty,
               let password = passwordField.text, !password.isEmpty else {
             print("Missing field data")
+            showAlert(message: "Please enter both email and password.")
             return
         }
         
@@ -110,6 +125,7 @@ final class LoginViewController: UIViewController {
         ChatManager.shared.signIn(email: email, password: password) { [weak self] success in
             guard success else {
                 print("Login failed")
+                self?.showAlert(message: "Login failed. Please try again.")
                 return
             }
             print("User logged in successfully")
@@ -137,10 +153,11 @@ final class LoginViewController: UIViewController {
                                                                action: #selector(didTapCompose))
         let tabVC = TabBarViewController(chatList: vc)
         tabVC.modalPresentationStyle = .fullScreen
-
+        tabVC.delegate = self  // Setting the delegate here
+        
         // Ensure the view is in the window hierarchy
         DispatchQueue.main.async {
-            if self.view.window != nil {
+            if self.isViewVisible {
                 print("Presenting TabBarViewController")
                 self.present(tabVC, animated: animated)
             } else {
@@ -150,19 +167,33 @@ final class LoginViewController: UIViewController {
     }
     
     @objc private func didTapCompose() {
+        //  delegate?.didRequestCompose()
         let alert = UIAlertController(title: "New Chat",
-                                      message: "Enter channel name",
+                                      message: "Enter Channel Name",
                                       preferredStyle: .alert)
+        
         alert.addTextField()
         alert.addAction(.init(title: "Cancel", style: .cancel))
         alert.addAction(.init(title: "Create", style: .default, handler: { _ in
-            guard let text = alert.textFields?.first?.text, !text.isEmpty else {
+            guard let text = alert.textFields?.first?.text, !text.isEmpty else{
                 return
             }
-            ChatManager.shared.createNewChannel(name: text)
+            
+            ChatManager.shared.createNewChannel(name: text) { [weak self] success in
+                DispatchQueue.main.async {
+                    if success {
+                        print("Channel created successfully")
+                        self?.showAlert( message: "Channel created successfully.")
+                    } else {
+                        print("Failed to create channel")
+                        self?.showAlert(message: "Failed to create channel. Please try again.")
+                    }
+                }
+            }
+            
         }))
-        
         presentedViewController?.present(alert, animated: true)
+        
     }
     
     func attemptAutoLogin(email: String, password: String) {
@@ -178,8 +209,17 @@ final class LoginViewController: UIViewController {
             }
         }
     }
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
 }
-
 
 
 
