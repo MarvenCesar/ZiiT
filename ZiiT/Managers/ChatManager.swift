@@ -7,7 +7,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-//singleton object 
+//singleton object
 final class ChatManager {
     static let shared = ChatManager()
     
@@ -16,12 +16,10 @@ final class ChatManager {
     
     private let db = Firestore.firestore()
     
-   
-   func setup(client: ChatClient) {
-      self.client = client
-    }
-   
     
+    func setup(client: ChatClient) {
+        self.client = client
+    }
     
     func signUp(email: String, password: String, username: String, completion: @escaping (Bool) -> Void) {
         print("Attempting to sign up user with email: \(email)")
@@ -32,23 +30,26 @@ final class ChatManager {
             } else if let authResult = authResult {
                 let user = authResult.user
                 print("User signed up successfully: \(user.uid)")
-                self.addUsernameToFirestore(userID: user.uid, username: username) { success in
+                self.addUsernameToFirestore(userID: user.uid, email: email, username: username) { success in
                     completion(success)
                 }
             }
         }
     }
     
-    func addUsernameToFirestore(userID: String, username: String, completion: @escaping (Bool) -> Void) {
-        print("Adding username to Firestore for userID: \(userID)")
+    
+    
+    func addUsernameToFirestore(userID: String, email: String, username: String, completion: @escaping (Bool) -> Void) {
+        print("Adding username and email to Firestore for userID: \(userID)")
         db.collection("users").document(userID).setData([
-            "username": username
+            "username": username,
+            "email": email
         ]) { error in
             if let error = error {
-                print("Error adding username to Firestore: \(error.localizedDescription)")
+                print("Error adding username and email to Firestore: \(error.localizedDescription)")
                 completion(false)
             } else {
-                print("Username added to Firestore successfully.")
+                print("Username and email added to Firestore successfully.")
                 completion(true)
             }
         }
@@ -185,36 +186,74 @@ final class ChatManager {
         }
     }
     
-    public func createNewChannel(name: String, completion: @escaping (Bool) -> Void) {
+    public func createNewChannel(name: String, memberEmails: [String], completion: @escaping (Bool) -> Void) {
         guard let currentUser = client.currentUserId else {
             print("No current user")
             completion(false)
             return
         }
+        // Array to hold member IDs
+        var memberIds = [String]()
         
-        do {
-         let controller = try client.channelController(
-            createChannelWithId: .init(type: .messaging, id: name),
-                name: name,
-                members: [],
-                isCurrentUserMember: true
-            )
-           controller.synchronize { error in
-                if let error = error {
-                    print("Error synchronizing channel: \(error.localizedDescription)")
-                    completion(false)
-                } else {
-                    print("Channel created successfully")
-                    completion(true)
+        // Group dispatch to handle multiple async tasks
+        let group = DispatchGroup()
+        
+        for email in memberEmails {
+            group.enter()
+            fetchUserIDByEmail(email) { userId in
+                if let userId = userId {
+                    memberIds.append(userId)
                 }
+                group.leave()
             }
-        } catch {
-            print("Error creating channel controller: \(error.localizedDescription)")
-            completion(false)
-            return
         }
-        
-    
+        // After all async tasks are completed
+        group.notify(queue: .main) {
+            // Ensure the current user is included in the members
+            if !memberIds.contains(currentUser) {
+                memberIds.append(currentUser)
+            }
+            do {
+                let controller = try self.client.channelController(
+                    createChannelWithId: .init(type: .messaging, id: name),
+                    name: name,
+                    members: Set(memberIds),
+                    isCurrentUserMember: true
+                )
+                controller.synchronize { error in
+                    if let error = error {
+                        print("Error synchronizing channel: \(error.localizedDescription)")
+                        completion(false)
+                    } else {
+                        print("Channel created successfully")
+                        completion(true)
+                    }
+                }
+            } catch {
+                print("Error creating channel controller: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+        }
+    }
+
+    // Helper function to fetch user ID by email
+    func fetchUserIDByEmail(_ email: String, completion: @escaping (String?) -> Void) {
+        db.collection("users").whereField("email", isEqualTo: email).getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error fetching user document: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+
+            guard let document = querySnapshot?.documents.first else {
+                completion(nil)
+                return
+            }
+
+            let userId = document.documentID
+            completion(userId)
+        }
     }
     
     func createChannelList() -> UIViewController? {

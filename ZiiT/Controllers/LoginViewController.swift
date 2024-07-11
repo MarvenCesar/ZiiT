@@ -167,34 +167,51 @@ final class LoginViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     @objc private func didTapCompose() {
-        //  delegate?.didRequestCompose()
         let alert = UIAlertController(title: "New Chat",
-                                      message: "Enter Channel Name",
+                                      message: "Enter Channel Name and Member Emails (comma-separated)",
                                       preferredStyle: .alert)
-        
-        alert.addTextField()
+
+        alert.addTextField { textField in
+            textField.placeholder = "Channel Name"
+        }
+        alert.addTextField { textField in
+            textField.placeholder = "Member Emails"
+        }
         alert.addAction(.init(title: "Cancel", style: .cancel))
-        alert.addAction(.init(title: "Create", style: .default, handler: { _ in
-            guard let text = alert.textFields?.first?.text, !text.isEmpty else{
+        alert.addAction(.init(title: "Create", style: .default, handler: { [weak self] _ in
+            guard let channelName = alert.textFields?.first?.text, !channelName.isEmpty,
+                  let emailsString = alert.textFields?.last?.text, !emailsString.isEmpty else {
                 return
             }
-            
-            ChatManager.shared.createNewChannel(name: text) { [weak self] success in
-                DispatchQueue.main.async {
-                    if success {
-                        print("Channel created successfully")
-                        self?.showAlert( message: "Channel created successfully.")
-                    } else {
-                        print("Failed to create channel")
-                        self?.showAlert(message: "Failed to create channel. Please try again.")
+
+            let memberEmails = emailsString.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+
+            DispatchQueue.main.async {
+                ChatManager.shared.createNewChannel(name: channelName, memberEmails: memberEmails) { success in
+                    DispatchQueue.main.async {
+                        if success {
+                            print("Channel created successfully")
+                            self?.showAlert(title: "Success", message: "Channel created successfully.")
+                        } else {
+                            print("Failed to create channel")
+                            self?.showAlert(title: "Error", message: "Failed to create channel. Please try again.")
+                        }
                     }
                 }
             }
-            
         }))
-        presentedViewController?.present(alert, animated: true)
-        
+        //self.present(alert, animated: true) removed this
+       presentedViewController?.present(alert, animated: true)
     }
+
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
     
     func attemptAutoLogin(email: String, password: String) {
         print("Attempting auto-login for \(email)")
