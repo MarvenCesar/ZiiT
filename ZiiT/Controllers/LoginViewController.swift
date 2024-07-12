@@ -110,31 +110,35 @@ final class LoginViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     @objc private func didTapLogin() {
-        print("Login button tapped")
-        emailField.resignFirstResponder()
-        passwordField.resignFirstResponder()
         guard let email = emailField.text, !email.isEmpty,
               let password = passwordField.text, !password.isEmpty else {
-            print("Missing field data")
             showAlert(message: "Please enter both email and password.")
             return
         }
         
-        print("Starting login process for \(email)")
-        
-        ChatManager.shared.signIn(email: email, password: password) { [weak self] success in
-            guard success else {
-                print("Login failed")
-                self?.showAlert(message: "Login failed. Please try again.")
-                return
-            }
-            print("User logged in successfully")
-            DispatchQueue.main.async {
-                self?.presentChatList()
+        getPassphrase { passphrase in
+            ChatManager.shared.signIn(email: email, password: password) { [weak self] success in
+                guard success else {
+                    self?.showAlert(message: "Login failed. Please try again.")
+                    return
+                }
+                
+                guard let userId = ChatManager.shared.currentUser else { return }
+                ChatManager.shared.retrieveAndDecryptPrivateKey(userId: userId, passphrase: passphrase) { privateKey in
+                    guard let privateKey = privateKey else {
+                        self?.showAlert(message: "Failed to retrieve private key.")
+                        return
+                    }
+                    
+                    self?.presentChatList()
+                }
             }
         }
     }
-    
+
+
+
+
     @objc private func didTapSignUp() {
         print("SignUp button tapped")
         let signUpVC = SignUpViewController()
@@ -227,6 +231,28 @@ final class LoginViewController: UIViewController, UITabBarControllerDelegate {
         }
     }
     
+    func getPassphrase(completion: @escaping (String) -> Void) {
+        let alert = UIAlertController(title: "Enter Passphrase", message: "Please enter your passphrase to secure your private key.", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.isSecureTextEntry = true
+            textField.placeholder = "Passphrase"
+        }
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
+            if let passphrase = alert.textFields?.first?.text, !passphrase.isEmpty {
+                completion(passphrase)
+            } else {
+                // Handle empty passphrase scenario
+                self.showAlert(message: "Passphrase cannot be empty.")
+            }
+        }
+        
+        alert.addAction(submitAction)
+        present(alert, animated: true)
+    }
+
+    
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -237,6 +263,19 @@ final class LoginViewController: UIViewController, UITabBarControllerDelegate {
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

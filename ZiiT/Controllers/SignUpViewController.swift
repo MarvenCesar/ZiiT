@@ -1,4 +1,8 @@
+// SignUpViewController
+
 import UIKit
+import Foundation
+import FirebaseAuth
 
 final class SignUpViewController: UIViewController {
     private let emailField: UITextField = {
@@ -110,23 +114,56 @@ final class SignUpViewController: UIViewController {
         
         print("Starting sign-up process for \(email)")
         
-        ChatManager.shared.signUp(email: email, password: password, username: username) { [weak self] success in
-            print("Sign-up completion handler called")
-            guard success else {
-                print("Sign-up failed")
-                self?.showAlert(message: "Sign-up failed. Please try again.")
-                return
-            }
-            print("User signed up successfully")
-            
-            DispatchQueue.main.async {
-                self?.navigationController?.popViewController(animated: true)
-                if let loginVC = self?.navigationController?.topViewController as? LoginViewController {
-                    loginVC.attemptAutoLogin(email: email, password: password)
+        promptForPassphrase { passphrase in
+            ChatManager.shared.signUp(email: email, password: password, username: username) { [weak self] success in
+                print("Sign-up completion handler called")
+                guard success else {
+                    print("Sign-up failed")
+                    self?.showAlert(message: "Sign-up failed. Please try again.")
+                    return
+                }
+                print("User signed up successfully")
+                
+                // Generate key pair
+                guard let (publicKey, privateKey) = ChatManager.shared.generateKeyPair() else { return }
+                
+                // Encrypt and store private key
+                ChatManager.shared.encryptAndStorePrivateKey(privateKey, passphrase: passphrase, userId: Auth.auth().currentUser!.uid)
+                
+                // Save public key in Firestore
+                ChatManager.shared.savePublicKey(userId: Auth.auth().currentUser!.uid, publicKey: publicKey)
+                
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                    if let loginVC = self?.navigationController?.topViewController as? LoginViewController {
+                        // loginVC.attemptAutoLogin(email: email, password: password)
+                    }
                 }
             }
         }
     }
+
+    
+    func promptForPassphrase(completion: @escaping (String) -> Void) {
+        let alert = UIAlertController(title: "Create Passphrase", message: "Enter a passphrase to secure your private key.", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.isSecureTextEntry = true
+            textField.placeholder = "Passphrase"
+        }
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
+            if let passphrase = alert.textFields?.first?.text, !passphrase.isEmpty {
+                completion(passphrase)
+            } else {
+                self.showAlert(message: "Passphrase cannot be empty.")
+            }
+        }
+        
+        alert.addAction(submitAction)
+        present(alert, animated: true)
+    }
+
     
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)

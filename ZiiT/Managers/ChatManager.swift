@@ -1,11 +1,14 @@
 // ChatManager.swift
 
+
 import StreamChat
 import StreamChatUI
 import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import CryptoKit
+
 
 //singleton object
 final class ChatManager {
@@ -36,6 +39,130 @@ final class ChatManager {
             }
         }
     }
+    
+    func generateKeyPair() -> (publicKey: String, privateKey: String)? {
+        let privateKey = Curve25519.KeyAgreement.PrivateKey()
+        let publicKey = privateKey.publicKey
+        let pubData = publicKey.rawRepresentation
+        let privData = privateKey.rawRepresentation
+        return (pubData.base64EncodedString(), privData.base64EncodedString())
+    }
+
+
+    func deriveSymmetricKey(publicKey: String, privateKey: String) -> SymmetricKey? {
+        guard let publicKeyData = Data(base64Encoded: publicKey),
+              let privateKeyData = Data(base64Encoded: privateKey),
+              let privKey = try? Curve25519.KeyAgreement.PrivateKey(rawRepresentation: privateKeyData),
+              let pubKey = try? Curve25519.KeyAgreement.PublicKey(rawRepresentation: publicKeyData) else {
+            print("Invalid keys")
+            return nil
+        }
+
+        do {
+            let sharedSecret = try privKey.sharedSecretFromKeyAgreement(with: pubKey)
+            return sharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: Data(), sharedInfo: Data(), outputByteCount: 32)
+        } catch {
+            print("Failed to derive key: \(error)")
+            return nil
+        }
+    }
+
+    
+    func encryptMessage(message: String, symmetricKey: SymmetricKey) -> Data? {
+        let messageData = message.data(using: .utf8)!
+        do {
+            let sealedBox = try AES.GCM.seal(messageData, using: symmetricKey)
+            return sealedBox.combined
+        } catch {
+            print("Encryption failed: \(error)")
+            return nil
+        }
+    }
+
+
+    func decryptMessage(encryptedMessage: Data, symmetricKey: SymmetricKey) -> String? {
+        do {
+            let sealedBox = try AES.GCM.SealedBox(combined: encryptedMessage)
+            let decryptedData = try AES.GCM.open(sealedBox, using: symmetricKey)
+            return String(data: decryptedData, encoding: .utf8)
+        } catch {
+            print("Decryption failed: \(error)")
+            return nil
+        }
+    }
+
+
+    
+ 
+
+    func encryptAndStorePrivateKey(_ privateKey: String, passphrase: String, userId: String) {
+        let key = SymmetricKey(data: SHA256.hash(data: passphrase.data(using: .utf8)!))
+        let privateKeyData = privateKey.data(using: .utf8)!
+        
+        do {
+            let sealedBox = try AES.GCM.seal(privateKeyData, using: key)
+            let encryptedPrivateKey = sealedBox.combined!.base64EncodedString()
+            
+            // Store encrypted private key in Firestore
+            db.collection("users").document(userId).setData(["encryptedPrivateKey": encryptedPrivateKey], merge: true)
+        } catch {
+            print("Encryption failed: \(error)")
+        }
+    }
+
+    func retrieveAndDecryptPrivateKey(userId: String, passphrase: String, completion: @escaping (String?) -> Void) {
+        db.collection("users").document(userId).getDocument { document, error in
+            if let document = document, document.exists, let data = document.data(),
+               let encryptedPrivateKey = data["encryptedPrivateKey"] as? String,
+               let encryptedData = Data(base64Encoded: encryptedPrivateKey) {
+                let key = SymmetricKey(data: SHA256.hash(data: passphrase.data(using: .utf8)!))
+                
+                do {
+                    let sealedBox = try AES.GCM.SealedBox(combined: encryptedData)
+                    let decryptedData = try AES.GCM.open(sealedBox, using: key)
+                    let privateKey = String(data: decryptedData, encoding: .utf8)
+                    completion(privateKey)
+                } catch {
+                    print("Decryption failed: \(error)")
+                    completion(nil)
+                }
+            } else {
+                print("No encrypted private key found")
+                completion(nil)
+            }
+        }
+    }
+
+    func sendMessage(channelId: String, message: String, recipientPublicKey: String, passphrase: String) {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        retrieveAndDecryptPrivateKey(userId: currentUser.uid, passphrase: passphrase) { [self] privateKey in
+            guard let privateKey = privateKey else {
+                print("Private key retrieval failed")
+                return
+            }
+            
+            guard let symmetricKey = self.deriveSymmetricKey(publicKey: recipientPublicKey, privateKey: privateKey),
+                  let encryptedMessageData = encryptMessage(message: message, symmetricKey: symmetricKey) else {
+                print("Encryption failed")
+                return
+            }
+            
+            let encryptedMessage = encryptedMessageData.base64EncodedString()
+            
+            let messageController = self.client.channelController(for: ChannelId(type: .messaging, id: channelId))
+            messageController.createNewMessage(text: encryptedMessage) { result in
+                switch result {
+                case .success:
+                    print("Message sent successfully")
+                case .failure(let error):
+                    print("Error sending message: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+
+
     
     
     
@@ -256,6 +383,10 @@ final class ChatManager {
         }
     }
     
+    func savePublicKey(userId: String, publicKey: String) {
+        db.collection("users").document(userId).setData(["publicKey": publicKey], merge: true)
+    }
+    
     func createChannelList() -> UIViewController? {
         guard let id = currentUser else { return nil }
         let query = ChannelListQuery(filter: .containMembers(userIds: [id]))
@@ -266,6 +397,10 @@ final class ChatManager {
         return vc
     }
 }
+
+
+
+
 
 
 
