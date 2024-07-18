@@ -68,7 +68,30 @@ final class LoginViewController: UIViewController, UITabBarControllerDelegate {
         addConstraints()
         loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
+        testEncryptionDecryption()
     }
+   
+    func testEncryptionDecryption() {
+           guard let (publicKey, privateKey) = ChatManager.shared.generateKeyPair(),
+                 let symmetricKey = ChatManager.shared.deriveSymmetricKey(publicKey: publicKey, privateKey: privateKey) else {
+               print("Key generation or derivation failed")
+               return
+           }
+
+           let message = "Hiss this is a test"
+           guard let encryptedData = ChatManager.shared.encryptMessage(message: message, symmetricKey: symmetricKey) else {
+               print("Message encryption failed")
+               return
+           }
+
+           guard let decryptedMessage = ChatManager.shared.decryptMessage(encryptedMessage: encryptedData, symmetricKey: symmetricKey) else {
+               print("Message decryption failed")
+               return
+           }
+
+           print("Original Message: \(message)")
+           print("Decrypted Message: \(decryptedMessage)")
+       }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -263,6 +286,62 @@ final class LoginViewController: UIViewController, UITabBarControllerDelegate {
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

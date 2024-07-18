@@ -45,9 +45,10 @@ final class ChatManager {
         let publicKey = privateKey.publicKey
         let pubData = publicKey.rawRepresentation
         let privData = privateKey.rawRepresentation
+        print("Generated Public Key: \(pubData.base64EncodedString())")
+        print("Generated Private Key: \(privData.base64EncodedString())")
         return (pubData.base64EncodedString(), privData.base64EncodedString())
     }
-
 
     func deriveSymmetricKey(publicKey: String, privateKey: String) -> SymmetricKey? {
         guard let publicKeyData = Data(base64Encoded: publicKey),
@@ -60,31 +61,35 @@ final class ChatManager {
 
         do {
             let sharedSecret = try privKey.sharedSecretFromKeyAgreement(with: pubKey)
-            return sharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: Data(), sharedInfo: Data(), outputByteCount: 32)
+            let symmetricKey = sharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: Data(), sharedInfo: Data(), outputByteCount: 32)
+            print("Derived Symmetric Key: \(symmetricKey.withUnsafeBytes { Data(Array($0)).base64EncodedString() })")
+            return symmetricKey
         } catch {
             print("Failed to derive key: \(error)")
             return nil
         }
     }
 
-    
     func encryptMessage(message: String, symmetricKey: SymmetricKey) -> Data? {
         let messageData = message.data(using: .utf8)!
         do {
             let sealedBox = try AES.GCM.seal(messageData, using: symmetricKey)
-            return sealedBox.combined
+            let encryptedData = sealedBox.combined
+            print("Encrypted Message: \(encryptedData!.base64EncodedString())")
+            return encryptedData
         } catch {
             print("Encryption failed: \(error)")
             return nil
         }
     }
 
-
     func decryptMessage(encryptedMessage: Data, symmetricKey: SymmetricKey) -> String? {
         do {
             let sealedBox = try AES.GCM.SealedBox(combined: encryptedMessage)
             let decryptedData = try AES.GCM.open(sealedBox, using: symmetricKey)
-            return String(data: decryptedData, encoding: .utf8)
+            let decryptedMessage = String(data: decryptedData, encoding: .utf8)
+        //    print("Decrypted Message: \(decryptedMessage ?? "Decryption failed")")
+            return decryptedMessage
         } catch {
             print("Decryption failed: \(error)")
             return nil
@@ -397,6 +402,30 @@ final class ChatManager {
         return vc
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

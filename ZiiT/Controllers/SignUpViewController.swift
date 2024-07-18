@@ -99,7 +99,6 @@ final class SignUpViewController: UIViewController {
     }
     
     @objc private func didTapSignUp() {
-        print("SignUp button tapped")
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
         usernameField.resignFirstResponder()
@@ -107,22 +106,16 @@ final class SignUpViewController: UIViewController {
         guard let email = emailField.text, !email.isEmpty,
               let password = passwordField.text, !password.isEmpty,
               let username = usernameField.text, !username.isEmpty else {
-            print("Missing field data")
             showAlert(message: "Please fill in all fields.")
             return
         }
         
-        print("Starting sign-up process for \(email)")
-        
         promptForPassphrase { passphrase in
             ChatManager.shared.signUp(email: email, password: password, username: username) { [weak self] success in
-                print("Sign-up completion handler called")
                 guard success else {
-                    print("Sign-up failed")
                     self?.showAlert(message: "Sign-up failed. Please try again.")
                     return
                 }
-                print("User signed up successfully")
                 
                 // Generate key pair
                 guard let (publicKey, privateKey) = ChatManager.shared.generateKeyPair() else { return }
@@ -135,15 +128,11 @@ final class SignUpViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self?.navigationController?.popViewController(animated: true)
-                    if let loginVC = self?.navigationController?.topViewController as? LoginViewController {
-                        // loginVC.attemptAutoLogin(email: email, password: password)
-                    }
                 }
             }
         }
     }
 
-    
     func promptForPassphrase(completion: @escaping (String) -> Void) {
         let alert = UIAlertController(title: "Create Passphrase", message: "Enter a passphrase to secure your private key.", preferredStyle: .alert)
         
@@ -163,7 +152,6 @@ final class SignUpViewController: UIViewController {
         alert.addAction(submitAction)
         present(alert, animated: true)
     }
-
     
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -173,5 +161,3 @@ final class SignUpViewController: UIViewController {
         }
     }
 }
-
-
