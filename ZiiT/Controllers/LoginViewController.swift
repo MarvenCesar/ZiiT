@@ -78,7 +78,7 @@ final class LoginViewController: UIViewController, UITabBarControllerDelegate {
                return
            }
 
-           let message = "Hiss this is a test"
+           let message = "Hey this is a test"
            guard let encryptedData = ChatManager.shared.encryptMessage(message: message, symmetricKey: symmetricKey) else {
                print("Message encryption failed")
                return
