@@ -177,21 +177,6 @@ open ZiiT.xcworkspace
 
 - ****SceneDelegate.swift****: Manages the app's UI lifecycle.
 
-  
-
-## Troubleshooting
-
-- Ensure all Firebase configurations are correctly set up in the Firebase Console.
-
-- Make sure that the Stream Chat API key and secret are correctly added.
-
-- Check for any missing dependencies and ensure they are correctly installed using CocoaPods.
-
-- Verify network permissions in your Xcode project settings.
-
-  
-
-For further assistance, refer to the official documentation for [Firebase](https://firebase.google.com/docs) and [Stream Chat](https://getstream.io/chat/docs/).
 
   
 
