@@ -437,3 +437,4 @@ This app is not a fully decentralized application and requires further improveme
 By addressing these areas, the app can move towards a more fully decentralized architecture, enhancing security, privacy, and user autonomy. However, achieving full decentralization is a complex and ongoing process that requires significant effort, expertise, and resources.
 
 ## Video Example
+![dma2](https://github.com/user-attachments/assets/f80abbaf-eb3a-4125-90b7-766857ebdac4)
