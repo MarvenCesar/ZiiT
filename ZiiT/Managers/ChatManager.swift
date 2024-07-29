@@ -9,7 +9,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import CryptoKit
 
-// test
+
 //singleton object
 final class ChatManager {
     static let shared = ChatManager()
@@ -238,11 +238,19 @@ final class ChatManager {
             
             print("Received token: \(token)")
             
+            let userInfo = UserInfo(
+                id: user.uid,
+                name: user.email ?? user.uid,
+                imageURL: user.photoURL,
+                extraData: [
+                    "role": "admin",
+                    "channel_permissions": ["read", "write", "create", "update", "delete"]
+                ]
+            )
+            
             self.client.connectUser(
-                userInfo: UserInfo(id: user.uid, name: user.email ?? user.uid),
-                tokenProvider: { completion in
-                    completion(.success(Token(stringLiteral: token)))
-                }
+                userInfo: userInfo,
+                token: Token(stringLiteral: token)
             ) { error in
                 if let error = error {
                     print("Error connecting to Stream Chat: \(error.localizedDescription)")
@@ -256,7 +264,10 @@ final class ChatManager {
         
         task.resume()
     }
-    
+
+
+
+
     func signOut() {
         do {
             try Auth.auth().signOut()

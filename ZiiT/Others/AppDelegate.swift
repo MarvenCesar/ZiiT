@@ -10,7 +10,6 @@ import FirebaseCore
 import FirebaseFirestore
 import StreamChat
 import StreamChatUI
-import StreamChatSwiftUI
 import SwiftUI
 
 
