@@ -61,10 +61,12 @@ Navigate to the project directory and install the necessary pods:
 
 cd ZiiT
 
+cd ZiiT
+
 pod install
 
 ```
-
+Failure to do this properly will result in error message
   
 
 ### Step 4: Configure Firebase
@@ -73,7 +75,7 @@ pod install
 
 2. Add an iOS app to your Firebase project.
 
-3. Download the `GoogleService-Info.plist` file and add it to your Xcode project. Ensure it is included in the target.
+3. Download the `GoogleService-Info.plist` file and add it to your Xcode project. Ensure it is included in the target. Failure to do this properly will result in error message.
 
   
 
