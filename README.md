@@ -140,7 +140,7 @@ Open the `.xcworkspace` file in Xcode:
 open ZiiT.xcworkspace
 
 ```
-
+### Step 8: Delete the LaunchScreen.storyboard if it appears in the project directory under the asset folder to prevent delays or and errors
   
 
 ## Running the App
