@@ -100,7 +100,7 @@ npm install
 3. Deploy the Firebase function to generate Stream tokens:
 
 ```bash
-
+cd ..
 firebase deploy --only functions
 
 ```
