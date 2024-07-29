@@ -59,7 +59,7 @@ final class LoginViewController: UIViewController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Decentralized Messaging APP"
+        title = "ZiiT"
         view.backgroundColor = .systemBackground
         view.addSubview(emailField)
         view.addSubview(passwordField)
